@@ -32,9 +32,12 @@ let bottomPipeImg;
 let veloX = -2; //pipes moving left speed
 let veloY = 0; //marsh jump speed
 let gravity = 0.4;
+
+//game attributes
 let gameOver = false;
 let started = false;
 let score = 0;
+let highScore = 0;
 
 
 
@@ -110,6 +113,7 @@ function loop() {
     context.fillStyle = "white";
     context.font = "35px sans-serif";
     context.fillText(score, 5, 45);
+    context.fillText(`High Score: ${highScore}`, 100, 45);
 
     if (gameOver) {
         context.fillText("Game Over", 5, 90);
@@ -162,6 +166,9 @@ function moveMarsh(e) {
 
         // reset game
         if (gameOver)   {
+            if (score > highScore) {
+                highScore = score;
+            }
             marsh.y = marshY;
             pipes = [];
             score = 0;

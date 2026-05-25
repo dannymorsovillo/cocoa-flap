@@ -121,7 +121,7 @@ function loop() {
 
     if(!started) {
         context.font = "35px sans-serif";
-        context.fillText("Tap Space Bar to Play", 5, 120);
+        context.fillText("Tap to Play", 5, 120);
     }
 }
 
@@ -162,7 +162,6 @@ function moveMarsh(e) {
     if (e.type == "touchstart") {
         e.preventDefault();
     }
-
 
     if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX" ||e.type == "touchstart" ) {
         started = true;

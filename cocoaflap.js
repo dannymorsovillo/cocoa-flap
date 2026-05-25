@@ -47,7 +47,6 @@ window.onload = function() {
     board.width = boardWidth;
     context = board.getContext("2d"); //used for drawing on board
 
-
     //draw marshmallow
     //context.fillStyle = "green";
     //context.fillRect(marsh.x, marsh.y, marsh.width, marsh.height);
@@ -66,6 +65,7 @@ window.onload = function() {
     requestAnimationFrame(loop);
     setInterval(placePipes, 1500); //every 1.5 secs
     document.addEventListener("keydown", moveMarsh);
+    board.addEventListener("touchstart", moveMarsh, { passive: false});
 }
 
 
@@ -121,7 +121,7 @@ function loop() {
 
     if(!started) {
         context.font = "35px sans-serif";
-        context.fillText("Tap space bar to play", 5, 120);
+        context.fillText("Tap Space Bar to Play", 5, 120);
     }
 }
 
@@ -159,13 +159,18 @@ function placePipes() {
 
 // takes in key event
 function moveMarsh(e) {
-    if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX") {
+    if (e.type == "touchstart") {
+        e.preventDefault();
+    }
+
+
+    if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX" ||e.type == "touchstart" ) {
         started = true;
         //jump
         veloY = -6;
 
         // reset game
-        if (gameOver)   {
+        if (gameOver) {
             if (score > highScore) {
                 highScore = score;
             }
@@ -180,7 +185,7 @@ function moveMarsh(e) {
 }
 
 function detectCollision(a, b) {
-    return a.x < b.x + b.width &&
+    return  a.x < b.x + b.width &&
             a.x + a.width > b.x &&
             a.y < b.y + b.height &&
             a.y + a.height > b.y;

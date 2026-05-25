@@ -5,4 +5,5 @@ body {
 
 #board {
     background-image: url("./cocoa-flap-sprites/background.png");
+    touch-action: none;
 }

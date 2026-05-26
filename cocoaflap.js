@@ -40,17 +40,12 @@ let score = 0;
 let highScore = 0;
 
 
-
 window.onload = function() {
     board = document.getElementById("board")
     board.height = boardHeight;
     board.width = boardWidth;
     context = board.getContext("2d"); //used for drawing on board
-
-    //draw marshmallow
-    //context.fillStyle = "green";
-    //context.fillRect(marsh.x, marsh.y, marsh.width, marsh.height);
-
+    
     //load images
     marshImg = new Image();
     marshImg.src = "./cocoa-flap-sprites/marshmallow.png";
@@ -69,8 +64,22 @@ window.onload = function() {
 }
 
 
+function drawStartScreen() {
+    context.fillStyle = "white";
+    context.font = "35px sans-serif";
+    context.textAlign =  "center";
+    context.fillText("Cocoa Flap", board.width / 2, 80);
+    context.fillText("Tap to play", board.width / 2, board.height / 2);
+}
+
 function loop() {
     requestAnimationFrame(loop);
+ 
+    if(!started && !gameOver) {
+        context.clearRect(0, 0, board.width, board.height);
+        drawStartScreen();
+        return;
+    }
 
     if (gameOver) {
         return;
@@ -112,16 +121,12 @@ function loop() {
     // score board
     context.fillStyle = "white";
     context.font = "35px sans-serif";
+    context.textAlign = "left";
     context.fillText(score, 5, 45);
     context.fillText(`High Score: ${highScore}`, 100, 45);
 
     if (gameOver) {
         context.fillText("Game Over", 5, 90);
-    }
-
-    if(!started) {
-        context.font = "35px sans-serif";
-        context.fillText("Tap to Play", 5, 120);
     }
 }
 

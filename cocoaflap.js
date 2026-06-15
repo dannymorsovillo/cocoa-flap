@@ -69,7 +69,7 @@ function drawStartScreen() {
     context.font = "35px sans-serif";
     context.textAlign =  "center";
     context.fillText("Cocoa Flap", board.width / 2, 80);
-    context.fillText("Tap to play", board.width / 2, board.height / 2);
+    context.fillText("Tap to Start Game", board.width / 2, board.height / 2);
 }
 
 function loop() {

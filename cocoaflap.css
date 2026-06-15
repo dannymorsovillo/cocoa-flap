@@ -6,9 +6,4 @@ body {
 #board {
     background-image: url("./cocoa-flap-sprites/background.png");
     touch-action: none;
-    max-width: 100%;
-    max-height: 100vh;
-    height: auto;
-    display: block;
-    margin: 0 auto;
 }
